@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="word">
+        <item>word</item>
+        <item>language</item>
+        <item>inferior</item>
+        <item>playstation</item>
+        <item>inhuman</item>
+        <item>product</item>
+        <item>android</item>
+        <item>hangman</item>
+        <item>prospecting</item>
+        <item>uncrackable</item>
+        <item>measurable</item>
+        <item>stackoverflow</item>
+        <item>widget</item>
+        <item>background</item>
+        <item>university</item>
+        <item>annotation</item>
+        <item>unimaginatively</item>
+        <item>sesquipedalianism</item>
+        <item>pneumonoultramicroscopicsilicovolcanoconiosis</item>
+    </string-array>
+</resources>

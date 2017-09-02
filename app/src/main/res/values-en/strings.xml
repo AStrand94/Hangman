@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="statistics_file_key">statistics</string>
+    <string name="app_name">Hangman</string>
+    <string name="start_game">Start game</string>
+    <string name="alphabet">ABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+    <string name="rules">Rules</string>
+    <string name="rules_text">This is a version of the classic game Hangman\n
+    The players gets a word in language selected, and chooses letters whom might fit in the word or not.
+    The player has 7 tries to guess the correct word.\n
+    The player has also the ability to see statistics for all of the games played from the main menu.</string>
+    <string name="statistics">Statistics</string>
+    <string name="new_game">New game</string>
+    <string name="new_game_text">Do you want to start a new game?</string>
+    <string name="new_game_text_win1">Congratulations, you guessed the word \'</string>
+    <string name="new_game_text_win2">\'. Do you want to start a new game?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="m_popular_letter">Most used letter:</string>
+    <string name="l_popular_letter">Least used letter:</string>
+    <string name="number_won">Number of times won:</string>
+    <string name="number_lost">Number of times lost:</string>
+    <string name="english">English</string>
+    <string name="norwegian">Norwegian</string>
+</resources>
