@@ -47,11 +47,11 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(instance);
         setContentView(R.layout.game_activity);
         alphabet = getResources().getString(R.string.alphabet).toCharArray();
-
-        String randomWord = RandomWordService.getRandomWord(getResources());
-
         configureInstances();
 
+        if (instance != null) return;
+
+        String randomWord = RandomWordService.getRandomWord(getResources());
         game = new Hangman(randomWord,alphabet);
         statistics = new HashMap<>();
         letterView.setText(formatGuessedString(game.getCurrentGuess()));
@@ -59,13 +59,15 @@ public class GameActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        //ArrayList<String> savedButtons = new ArrayList<>();
-        /*for (HashMap.Entry<String,BootstrapButton> entry : letterButtons.entrySet()){
-            savedButtons.add(entry.getKey() + entry.getValue());
+        ArrayList<String> disabledButtons = new ArrayList<>();
+        for (HashMap.Entry<String,BootstrapButton> entry : letterButtons.entrySet()){
+            if (!entry.getValue().isEnabled()){
+                disabledButtons.add(entry.getKey());
+            }
         }
-        outState.putStringArrayList("savedButtons",savedButtons);*/
+        outState.putStringArrayList("disabledButtons",disabledButtons);
 
         outState.putSerializable("buttons",letterButtons);
         outState.putSerializable("hangman",game);
@@ -81,11 +83,20 @@ public class GameActivity extends AppCompatActivity {
         letterButtons = (HashMap<String,BootstrapButton>)savedInstanceState.getSerializable("buttons");
         game.setWordHelper((Word)savedInstanceState.getSerializable("wordHelper"));
 
-        formatGuessedString(game.getCurrentGuess());
+        letterView.setText(formatGuessedString(game.getCurrentGuess()));
         configureInstances();
 
         for (BootstrapButton button : letterButtons.values()){
             addToView(letterLayout,button);
+        }
+
+        ArrayList<String> disabledButtons = savedInstanceState.getStringArrayList("disabledButtons");
+        //restoreDisabledButtons(disabledButtons);
+    }
+
+    private void restoreDisabledButtons(ArrayList<String> disabledButtons){
+        for (String s : disabledButtons){
+            letterButtons.get(s).setEnabled(false);
         }
     }
 
@@ -184,18 +195,6 @@ public class GameActivity extends AppCompatActivity {
     private void disableButtons() {
         for (BootstrapButton button : letterButtons.values()) button.setEnabled(false);
     }
-
-    /*private void endActivity(String key, String message){
-        Intent intent = new Intent();
-        intent.putExtra(key,message);
-        setResultAndFinish(intent);
-    }
-
-    private void setResultAndFinish(Intent intent){
-        setResult(RESULT_OK,intent);
-        finish();
-
-    }*/
 
     private void setCharButtons() {
         letterButtons = ButtonCreator.createButtonGrid(getApplicationContext(), alphabet,letterLayout);
