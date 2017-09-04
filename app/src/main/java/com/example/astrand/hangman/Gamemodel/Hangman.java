@@ -102,4 +102,10 @@ public class Hangman implements Serializable{
     public void setWordHelper(Word wordHelper) {
         this.wordHelper = wordHelper;
     }
+
+    public char[] getAlphabet() {
+        return alphabet;
+    }
+
+
 }

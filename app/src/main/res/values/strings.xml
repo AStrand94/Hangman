@@ -12,7 +12,8 @@
     <string name="new_game">Nytt spill</string>
     <string name="new_game_text_win1">Gratulerer, du vant og gjetter ordet \'</string>
     <string name="new_game_text_win2">\'. Vil du starte et nytt spill?</string>
-    <string name="new_game_text">Vil du starte et nytt spill?</string>
+    <string name="new_game_text_loss1">Dessverre klarte du det ikke, ordet var: </string>
+    <string name="new_game_text_loss2">. Vil du starte et nytt spill?</string>
     <string name="yes">Ja</string>
     <string name="no">Nei</string>
     <string name="m_popular_letter">Mest brukte bokstav:</string>
@@ -21,4 +22,6 @@
     <string name="number_lost">Antall ganger tapt:</string>
     <string name="english">Engelsk</string>
     <string name="norwegian">Norsk</string>
+    <string name="hangman_image_desc">Bilde av hangman-figuren</string>
+    <string name="set_Language">Sett språk</string>
 </resources>

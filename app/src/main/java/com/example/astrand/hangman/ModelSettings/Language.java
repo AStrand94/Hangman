@@ -8,7 +8,7 @@ import java.util.Locale;
 
 public final class Language {
 
-    private static Locale no = new Locale("no","NO");
+    private static Locale no = new Locale("nb","NO");
     private static Locale en = Locale.ENGLISH;
 
     private static Language NO;

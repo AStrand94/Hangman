@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="statistics_file_key">statistics</string>
     <string name="app_name">Hangman</string>
@@ -11,7 +10,8 @@
     The player has also the ability to see statistics for all of the games played from the main menu.</string>
     <string name="statistics">Statistics</string>
     <string name="new_game">New game</string>
-    <string name="new_game_text">Do you want to start a new game?</string>
+    <string name="new_game_text_loss1">You did not make it, the word was: </string>
+    <string name="new_game_text_loss2">. Do you want to start a new game?</string>
     <string name="new_game_text_win1">Congratulations, you guessed the word \'</string>
     <string name="new_game_text_win2">\'. Do you want to start a new game?</string>
     <string name="yes">Yes</string>
@@ -22,4 +22,6 @@
     <string name="number_lost">Number of times lost:</string>
     <string name="english">English</string>
     <string name="norwegian">Norwegian</string>
+    <string name="hangman_image_desc">Image of the hangman-figure</string>
+    <string name="set_Language">Set language</string>
 </resources>

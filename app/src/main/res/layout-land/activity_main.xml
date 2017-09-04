@@ -15,14 +15,13 @@
         android:text="@string/app_name"
         android:layout_marginTop="40dp"
         android:layout_gravity="center"
-         />
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="20dp">
+        android:gravity="center">
 
         <Spinner
             android:id="@+id/select_language_spinner"
@@ -31,7 +30,7 @@
             tools:layout_editor_absoluteY="8dp"
             tools:layout_editor_absoluteX="8dp"
             android:layout_gravity="center"
-            />
+        />
 
         <com.beardedhen.androidbootstrap.BootstrapButton
             android:layout_width="wrap_content"
@@ -44,12 +43,13 @@
             android:id="@+id/languageButton"/>
     </LinearLayout>
 
+
     <com.beardedhen.androidbootstrap.BootstrapButton
         android:id="@+id/startButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="10dp"
         android:text="@string/start_game"
         app:bootstrapBrand="success"
         app:bootstrapSize="lg"
@@ -62,7 +62,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="10dp"
         android:text="@string/statistics"
         app:bootstrapBrand="success"
         app:bootstrapSize="lg"
@@ -75,7 +75,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="10dp"
         android:text="@string/rules"
         app:bootstrapBrand="success"
         app:bootstrapSize="lg"

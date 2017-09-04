@@ -2,6 +2,8 @@ package com.example.astrand.hangman.Services;
 
 import android.content.Context;
 import android.graphics.Point;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.GridLayout;
 
@@ -9,6 +11,7 @@ import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.beardedhen.androidbootstrap.api.defaults.DefaultBootstrapBrand;
 import com.beardedhen.androidbootstrap.api.defaults.DefaultBootstrapSize;
 
+import java.util.Collection;
 import java.util.HashMap;
 
 public final class ButtonCreator {
@@ -16,14 +19,17 @@ public final class ButtonCreator {
     public static HashMap<String,BootstrapButton> createListFromChars(Context contexts, char[] chars, boolean[] enabled){
         HashMap<String,BootstrapButton> bootstrapButtonList = new HashMap<>();
 
-        for (char c : chars){
+        if (enabled != null && chars.length != enabled.length)
+            throw new IllegalArgumentException("chars and booleans must be the same length");
+
+        for (int i = 0; i < chars.length; i++){
+            char c = chars[i];
             BootstrapButton button = new BootstrapButton(contexts);
             String charString = Character.toString(c);
             button.setText(charString);
             bootstrapButtonList.put(charString,button);
+            if (enabled != null) button.setEnabled(!enabled[i]);
         }
-
-
 
         return bootstrapButtonList;
     }
@@ -34,6 +40,10 @@ public final class ButtonCreator {
 
     public static HashMap<String,BootstrapButton> createButtonGrid(Context context, char[] chars, GridLayout gridLayout){
         return createButtonGrid(createListFromChars(context,chars), gridLayout,chars,context);
+    }
+
+    public static HashMap<String,BootstrapButton> createButtonGrid(Context context, char[] chars, GridLayout gridLayout, boolean[] enabled){
+        return createButtonGrid(createListFromChars(context,chars,enabled), gridLayout,chars,context);
     }
 
     public static HashMap<String,BootstrapButton> createButtonGrid(HashMap<String,BootstrapButton> bootstrapButtons, GridLayout gridLayout, char[] chars,Context context){
@@ -82,5 +92,11 @@ public final class ButtonCreator {
         windowManager.getDefaultDisplay().getSize(point);
 
         return point.x;
+    }
+
+    public static void updateButtonWidth(int layoutSize, int rowCount, Collection<BootstrapButton> buttons) {
+        for (BootstrapButton button : buttons){
+            button.setWidth(layoutSize/rowCount);
+        }
     }
 }

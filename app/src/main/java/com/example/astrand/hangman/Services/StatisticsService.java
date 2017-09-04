@@ -122,7 +122,7 @@ public class StatisticsService {
 
     private static StatisticsTransfer minLetter(HashMap<String,Integer> hashMap){
 
-        StatisticsTransfer dto = new StatisticsTransfer();  dto.value = 0;
+        StatisticsTransfer dto = new StatisticsTransfer();  dto.value = Integer.MAX_VALUE;
         for (String s : hashMap.keySet()){
             if (hashMap.get(s) < dto.value){
                 dto.key = s; dto.value = hashMap.get(s);

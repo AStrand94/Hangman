@@ -27,6 +27,7 @@ public class StatisticsActivity extends AppCompatActivity {
 
         loadStatistics();
         instantiateMembers();
+        setStatistics();
     }
 
     private void instantiateMembers() {
@@ -40,8 +41,6 @@ public class StatisticsActivity extends AppCompatActivity {
         numberWon = (BootstrapLabel)findViewById(R.id.numberWon);
         mostLetter = (BootstrapLabel)findViewById(R.id.mostLetter);
         leastLetter = (BootstrapLabel)findViewById(R.id.leastLetter);
-
-        setStatistics();
     }
 
     private void setStatistics() {

@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -20,13 +19,11 @@ public class MainActivity extends AppCompatActivity {
 
     /*
     TODO: Set correct spinner text
-    TODO: Enable horizontal view from phone
-    TODO: Rules
+    TODO: Inherit from BootstrapButton
      */
 
     Spinner languageSelector;
-    BootstrapButton startButton, statisticsButton, rulesButton;
-    boolean spinnerFlag = false;
+    BootstrapButton startButton, statisticsButton, rulesButton,setLanguageButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,9 +32,11 @@ public class MainActivity extends AppCompatActivity {
         startButton = (BootstrapButton)findViewById(R.id.startButton);
         statisticsButton = (BootstrapButton)findViewById(R.id.statisticsButton);
         rulesButton = (BootstrapButton)findViewById(R.id.rulesButton);
+        setLanguageButton = (BootstrapButton)findViewById(R.id.languageButton);
+        languageSelector =  (Spinner)findViewById(R.id.select_language_spinner);
 
         instantiateButtonListeners();
-        instantiateSpinner();
+        setSpinnerValues();
 
         Log.d("LANGUAGE",getResources().getConfiguration().locale.toString());
     }
@@ -45,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        instantiateSpinner();
+        setSpinnerValues();
     }
 
     private void instantiateButtonListeners(){
@@ -66,34 +65,20 @@ public class MainActivity extends AppCompatActivity {
                 launchRulesActivity();
             }
         });
-    }
 
-    private void instantiateSpinner(){
-        languageSelector =  (Spinner)findViewById(R.id.select_language_spinner);
-
-        final Language[] languages = Language.getDefaultLanguages(getResources());
-
-        languageSelector.setAdapter(new ArrayAdapter<Language>(this,R.layout.support_simple_spinner_dropdown_item,languages));
-
-        languageSelector.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        setLanguageButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (!spinnerFlag){
-                    spinnerFlag = true;
-                    return;
-                }
-                Locale currentLocale = getResources().getConfiguration().locale;
-                Locale selectedLocale = ((Language)languageSelector.getSelectedItem()).getLocale();
-                if (!currentLocale.getCountry().equals(selectedLocale.getCountry())) setLocale(selectedLocale);
-
-                //if(!currentLocale.equals((Language)languageSelector.getSelectedItem()))   setLocale((Locale)languageSelector.getSelectedItem());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                //Do nothing
+            public void onClick(View v) {
+                Language lan = (Language)languageSelector.getSelectedItem();
+                if (!lan.getLocale().getLanguage().equals(getResources().getConfiguration().locale.getLanguage()))
+                    setLocale(lan.getLocale());
             }
         });
+    }
+
+    private void setSpinnerValues(){
+        final Language[] languages = Language.getDefaultLanguages(getResources());
+        languageSelector.setAdapter(new ArrayAdapter<Language>(this,R.layout.support_simple_spinner_dropdown_item,languages));
     }
 
     private void goToGame(){
