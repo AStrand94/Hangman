@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
+import com.beardedhen.androidbootstrap.AwesomeTextView;
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.beardedhen.androidbootstrap.BootstrapLabel;
 import com.example.astrand.hangman.R;
@@ -17,7 +18,7 @@ import java.util.HashMap;
 
 public class StatisticsActivity extends AppCompatActivity {
 
-    BootstrapLabel numberWon, numberLost, leastLetter, mostLetter;
+    AwesomeTextView numberWon, numberLost, leastLetter, mostLetter, numberLostVal, numberWonVal, leastLetterVal,mostLetterVal;
     HashMap<String,String> statistics;
 
     @Override
@@ -37,18 +38,36 @@ public class StatisticsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        numberLost = (BootstrapLabel)findViewById(R.id.numberLost);
-        numberWon = (BootstrapLabel)findViewById(R.id.numberWon);
-        mostLetter = (BootstrapLabel)findViewById(R.id.mostLetter);
-        leastLetter = (BootstrapLabel)findViewById(R.id.leastLetter);
+        numberLost = (AwesomeTextView)findViewById(R.id.numberLost);
+        numberLostVal = (AwesomeTextView)findViewById(R.id.numberLost_val);
+
+        numberWon = (AwesomeTextView)findViewById(R.id.numberWon);
+        numberWonVal = (AwesomeTextView)findViewById(R.id.numberWon_val);
+
+        mostLetter = (AwesomeTextView)findViewById(R.id.mostLetter);
+        mostLetterVal = (AwesomeTextView)findViewById(R.id.mostLetter_val);
+
+        leastLetter = (AwesomeTextView)findViewById(R.id.leastLetter);
+        leastLetterVal = (AwesomeTextView)findViewById(R.id.leastLetter_val);
     }
 
     private void setStatistics() {
-        if (statistics == null) return;
-        numberLost.setText(numberLost.getText() + " " + statistics.get(StatisticsService.NUMBER_LOST));
-        numberWon.setText(numberWon.getText() + " " + statistics.get(StatisticsService.NUMBER_WON));
-        mostLetter.setText(mostLetter.getText() + " " + statistics.get(StatisticsService.MOST_USED));
-        leastLetter.setText(leastLetter.getText() + " " + statistics.get(StatisticsService.LEAST_USED));
+        if (statistics == null || statistics.isEmpty()) setNoStatistics();
+        numberLostVal.setText(statistics.get(StatisticsService.NUMBER_LOST));
+        numberWonVal.setText(statistics.get(StatisticsService.NUMBER_WON));
+        mostLetterVal.setText(statistics.get(StatisticsService.MOST_USED));
+        leastLetterVal.setText(statistics.get(StatisticsService.LEAST_USED));
+    }
+
+    private void setNoStatistics() {
+        numberLost.setText("");
+        numberLostVal.setText("");
+        numberWon.setText("");
+        numberWonVal.setText("");
+        mostLetter.setText("");
+        mostLetterVal.setText("");
+        leastLetter.setText("");
+        leastLetterVal.setText("");
     }
 
     private void loadStatistics(){

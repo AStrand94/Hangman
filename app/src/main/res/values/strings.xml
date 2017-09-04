@@ -24,4 +24,5 @@
     <string name="norwegian">Norsk</string>
     <string name="hangman_image_desc">Bilde av hangman-figuren</string>
     <string name="set_Language">Sett språk</string>
+    <string name="no_statistics">Ingen statistikk. Spill mer!</string>
 </resources>

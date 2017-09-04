@@ -18,8 +18,7 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
 
     /*
-    TODO: Set correct spinner text
-    TODO: Inherit from BootstrapButton
+    TODO: Time taking for each game - statistics
      */
 
     Spinner languageSelector;

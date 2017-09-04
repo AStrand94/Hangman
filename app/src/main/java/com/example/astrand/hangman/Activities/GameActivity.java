@@ -13,9 +13,9 @@ import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.example.astrand.hangman.Gamemodel.Hangman;
 import com.example.astrand.hangman.Gamemodel.Word;
+import com.example.astrand.hangman.Helper.MyBootstrapButton;
 import com.example.astrand.hangman.R;
 import com.example.astrand.hangman.Services.ButtonCreator;
 import com.example.astrand.hangman.Services.RandomWordService;
@@ -30,7 +30,7 @@ public class GameActivity extends AppCompatActivity {
     Hangman game;
     ImageView imageView;
     GridLayout letterLayout;
-    HashMap<String,BootstrapButton> letterButtons;
+    HashMap<String,MyBootstrapButton> letterButtons;
     HashMap<String,Integer> statistics;
 
     private char[] alphabet;
@@ -40,16 +40,15 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(instance);
         setContentView(R.layout.game_activity);
         alphabet = getResources().getString(R.string.alphabet).toCharArray();
-        configureInstances();
 
         if (instance != null) return;
 
+        configureInstances();
         String randomWord = RandomWordService.getRandomWord(getResources());
         game = new Hangman(randomWord,alphabet);
         statistics = new HashMap<>();
         letterView.setText(formatGuessedString(game.getCurrentGuess()));
         setCharButtons();
-        //checkForOrientationChanges();
     }
 
     @Override
@@ -67,21 +66,15 @@ public class GameActivity extends AppCompatActivity {
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         game = (Hangman)savedInstanceState.getSerializable("hangman");
-        letterButtons = (HashMap<String,BootstrapButton>)savedInstanceState.getSerializable("buttons");
+        letterButtons = (HashMap<String,MyBootstrapButton>)savedInstanceState.getSerializable("buttons");
         game.setWordHelper((Word)savedInstanceState.getSerializable("wordHelper"));
         statistics = (HashMap<String, Integer>)savedInstanceState.getSerializable("statistics");
 
-        letterView.setText(formatGuessedString(game.getCurrentGuess()));
         configureInstances();
+        letterView.setText(formatGuessedString(game.getCurrentGuess()));
         imageView.setImageResource(getImageResource());
 
-
-        for (BootstrapButton button : letterButtons.values()){
-            addToView(letterLayout,button);
-        }
-
         setLetterButtonAction(letterButtons.values());
-        //checkForOrientationChanges();
     }
 
     private void configureInstances(){
@@ -93,7 +86,6 @@ public class GameActivity extends AppCompatActivity {
         letterLayout = (GridLayout)findViewById(R.id.letterLayout);
 
         if (getSupportActionBar() != null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
     }
 
     private void correctGuess(){
@@ -177,7 +169,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void disableButtons() {
-        for (BootstrapButton button : letterButtons.values()) button.setEnabled(false);
+        for (MyBootstrapButton button : letterButtons.values()) button.setEnabled(false);
     }
 
     private void setCharButtons() {
@@ -186,7 +178,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void configureButtons(){
-        for (BootstrapButton button : letterButtons.values()){
+        for (MyBootstrapButton button : letterButtons.values()){
             addToView(letterLayout,button);
             setLetterButtonAction(button);
         }
@@ -196,11 +188,11 @@ public class GameActivity extends AppCompatActivity {
         viewGroup.addView(view);
     }
 
-    private void setLetterButtonAction(Collection<BootstrapButton> bootstrapButtons){
-        for (BootstrapButton button : bootstrapButtons) setLetterButtonAction(button);
+    private void setLetterButtonAction(Collection<MyBootstrapButton> bootstrapButtons){
+        for (MyBootstrapButton button : bootstrapButtons) setLetterButtonAction(button);
     }
 
-    public void setLetterButtonAction(final BootstrapButton button){
+    public void setLetterButtonAction(final MyBootstrapButton button){
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -224,7 +216,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void wrapUpGame(){
-        for (BootstrapButton button : letterButtons.values()){
+        for (MyBootstrapButton button : letterButtons.values()){
             button.setEnabled(false);
         }
 
@@ -277,9 +269,10 @@ public class GameActivity extends AppCompatActivity {
     private void checkForOrientationChanges() {
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
             int size = ButtonCreator.getScreenWidth(getApplicationContext()) - imageView.getWidth();
-            ButtonCreator.updateButtonWidth(size,letterLayout.getColumnCount(),letterButtons.values());
+            //ButtonCreator.updateButtonWidth(size,letterLayout.getColumnCount(),letterButtons.values());
+            ButtonCreator.updateButtonWidth(size,ButtonCreator.BUTTON_GRID_SIZE,letterButtons.values());
         }else{
-            ButtonCreator.updateButtonWidth(ButtonCreator.getScreenWidth(getApplicationContext()),letterLayout.getColumnCount(),letterButtons.values());
+            ButtonCreator.updateButtonWidth(ButtonCreator.getScreenWidth(getApplicationContext()),ButtonCreator.BUTTON_GRID_SIZE,letterButtons.values());
         }
     }
 
@@ -287,5 +280,18 @@ public class GameActivity extends AppCompatActivity {
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         checkForOrientationChanges();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        checkForOrientationChanges();
+        removeFromView(letterLayout,letterButtons.values());
+        for (MyBootstrapButton button : letterButtons.values()) addToView(letterLayout,button);
     }
 }
