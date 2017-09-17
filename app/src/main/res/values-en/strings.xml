@@ -25,4 +25,7 @@
     <string name="hangman_image_desc">Image of the hangman-figure</string>
     <string name="set_Language">Set language</string>
     <string name="no_statistics">No statistics. Play more!</string>
+    <string name="bestTime">Best time</string>
+    <string name="noTime">No time set</string>
+    <string name="seconds">seconds</string>
 </resources>

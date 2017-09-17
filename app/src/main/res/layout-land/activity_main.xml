@@ -9,38 +9,34 @@
     android:visibility="visible"
     tools:context="com.example.astrand.hangman.Activities.MainActivity">
 
-    <TextView
+    <!--<TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/app_name"
         android:layout_marginTop="40dp"
         android:layout_gravity="center"
-        />
+        />-->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_marginTop="40dp">
 
-        <Spinner
-            android:id="@+id/select_language_spinner"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            tools:layout_editor_absoluteY="8dp"
-            tools:layout_editor_absoluteX="8dp"
-            android:layout_gravity="center"
-        />
-
-        <com.beardedhen.androidbootstrap.BootstrapButton
+        <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/set_Language"
-            app:bootstrapBrand="danger"
-            app:bootstrapSize="sm"
-            app:buttonMode="regular"
-            app:roundedCorners="true"
-            android:id="@+id/languageButton"/>
+            android:layout_height="match_parent"
+            android:id="@+id/flag1"
+            android:src="@drawable/unitedkingdom"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/flag2"
+            android:src="@drawable/norway"
+            android:layout_marginLeft="15dp"
+            />
     </LinearLayout>
 
 
@@ -49,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:text="@string/start_game"
         app:bootstrapBrand="success"
         app:bootstrapSize="lg"
@@ -62,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:text="@string/statistics"
         app:bootstrapBrand="success"
         app:bootstrapSize="lg"
@@ -75,7 +71,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:text="@string/rules"
         app:bootstrapBrand="success"
         app:bootstrapSize="lg"

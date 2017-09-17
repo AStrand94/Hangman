@@ -7,9 +7,6 @@ import com.beardedhen.androidbootstrap.TypefaceProvider;
 
 import java.util.Locale;
 
-/**
- * Created by strand117 on 21.08.2017.
- */
 
 public class HangmanApplication extends Application {
 

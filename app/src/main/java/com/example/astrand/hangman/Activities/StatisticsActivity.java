@@ -1,16 +1,14 @@
 package com.example.astrand.hangman.Activities;
 
-import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.beardedhen.androidbootstrap.AwesomeTextView;
-import com.beardedhen.androidbootstrap.BootstrapButton;
-import com.beardedhen.androidbootstrap.BootstrapLabel;
 import com.example.astrand.hangman.R;
 import com.example.astrand.hangman.Services.StatisticsService;
 
@@ -18,7 +16,7 @@ import java.util.HashMap;
 
 public class StatisticsActivity extends AppCompatActivity {
 
-    AwesomeTextView numberWon, numberLost, leastLetter, mostLetter, numberLostVal, numberWonVal, leastLetterVal,mostLetterVal;
+    AwesomeTextView numberWon, numberLost, leastLetter, mostLetter, numberLostVal, numberWonVal, leastLetterVal,mostLetterVal,bestTime,bestTimeVal;
     HashMap<String,String> statistics;
 
     @Override
@@ -31,6 +29,7 @@ public class StatisticsActivity extends AppCompatActivity {
         setStatistics();
     }
 
+    @SuppressWarnings("ConstantConditions")
     private void instantiateMembers() {
 
         Toolbar toolbar = (Toolbar)findViewById(R.id.my_toolbar);
@@ -49,6 +48,11 @@ public class StatisticsActivity extends AppCompatActivity {
 
         leastLetter = (AwesomeTextView)findViewById(R.id.leastLetter);
         leastLetterVal = (AwesomeTextView)findViewById(R.id.leastLetter_val);
+
+        bestTime = (AwesomeTextView)findViewById(R.id.bestTime);
+        bestTimeVal = (AwesomeTextView)findViewById(R.id.bestTime_val);
+
+        setColors();
     }
 
     private void setStatistics() {
@@ -57,10 +61,12 @@ public class StatisticsActivity extends AppCompatActivity {
         numberWonVal.setText(statistics.get(StatisticsService.NUMBER_WON));
         mostLetterVal.setText(statistics.get(StatisticsService.MOST_USED));
         leastLetterVal.setText(statistics.get(StatisticsService.LEAST_USED));
+        String val = statistics.get(StatisticsService.TIME_WON);
+        bestTimeVal.setText((val == null || val.isEmpty()) ? getString(R.string.no_statistics) : val + getString(R.string.seconds));
     }
 
     private void setNoStatistics() {
-        numberLost.setText("");
+        numberLost.setText(getString(R.string.no_statistics));
         numberLostVal.setText("");
         numberWon.setText("");
         numberWonVal.setText("");
@@ -68,6 +74,16 @@ public class StatisticsActivity extends AppCompatActivity {
         mostLetterVal.setText("");
         leastLetter.setText("");
         leastLetterVal.setText("");
+        bestTime.setText("");
+        bestTimeVal.setText("");
+    }
+
+    private void setColors(){
+        numberLost.setTextColor(Color.WHITE);
+        numberWon.setTextColor(Color.WHITE);
+        mostLetter.setTextColor(Color.WHITE);
+        leastLetter.setTextColor(Color.WHITE);
+        bestTime.setTextColor(Color.WHITE);
     }
 
     private void loadStatistics(){
@@ -76,7 +92,9 @@ public class StatisticsActivity extends AppCompatActivity {
                         getString(R.string.alphabet).split(""));
     }
 
-
-
-
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        setColors();
+    }
 }

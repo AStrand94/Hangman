@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.astrand.hangman.Gamemodel.Hangman;
+import com.example.astrand.hangman.Gamemodel.HangmanTimer;
 import com.example.astrand.hangman.Gamemodel.Word;
 import com.example.astrand.hangman.Helper.MyBootstrapButton;
 import com.example.astrand.hangman.R;
@@ -32,6 +33,7 @@ public class GameActivity extends AppCompatActivity {
     GridLayout letterLayout;
     HashMap<String,MyBootstrapButton> letterButtons;
     HashMap<String,Integer> statistics;
+    HangmanTimer timer = new HangmanTimer();
 
     private char[] alphabet;
 
@@ -64,6 +66,7 @@ public class GameActivity extends AppCompatActivity {
     @Override
     @SuppressWarnings("unchecked")
     public void onRestoreInstanceState(Bundle savedInstanceState) {
+        if (!timer.isCounting()) timer.start();
         super.onRestoreInstanceState(savedInstanceState);
         game = (Hangman)savedInstanceState.getSerializable("hangman");
         letterButtons = (HashMap<String,MyBootstrapButton>)savedInstanceState.getSerializable("buttons");
@@ -119,11 +122,9 @@ public class GameActivity extends AppCompatActivity {
                 return R.drawable.hang06;
             case 5:
                 return R.drawable.hang07;
-            case 6:
+            default:
                 return R.drawable.hang08;
         }
-        throw new IllegalStateException("This method should not have been called. False tries: " + falseTries);
-        //return 0;
     }
 
     private String formatGuessedString(String guessedString){
@@ -137,8 +138,6 @@ public class GameActivity extends AppCompatActivity {
 
         return sb.toString();
     }
-
-
 
     private void showAlert(String title,String message,String buttonText, DialogInterface.OnClickListener onClickListener){
         AlertDialog alert = new AlertDialog.Builder(this).create();
@@ -156,16 +155,6 @@ public class GameActivity extends AppCompatActivity {
                 .setNegativeButton(negativeText,onClickListener)
                 .create()
                 .show();
-    }
-
-    private void gameWon(){
-        showAlert("Game Won!", "Congratulations, you guessed the word \"" + game.getWord() + '"', "WOHOO!", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        disableButtons();
     }
 
     private void disableButtons() {
@@ -196,6 +185,7 @@ public class GameActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(!timer.isCounting()) timer.start();
                 checkLetter(button.getText().toString().charAt(0));
                 button.setEnabled(false);
                 addValueToStatistics(button.getText().toString());
@@ -216,11 +206,10 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void wrapUpGame(){
-        for (MyBootstrapButton button : letterButtons.values()){
-            button.setEnabled(false);
-        }
-
+        timer.stop();
+        disableButtons();
         storeStatistics();
+
         String newGameText = game.hasWon() ? getString(R.string.new_game_text_win1) + game.getWord() + getString(R.string.new_game_text_win2) :
                 getString(R.string.new_game_text_loss1) + game.getWord() + getString(R.string.new_game_text_loss2);
         showYesNoDialog(getString(R.string.new_game), newGameText, getString(R.string.yes), getString(R.string.no), new DialogInterface.OnClickListener() {
@@ -246,11 +235,15 @@ public class GameActivity extends AppCompatActivity {
 
         StatisticsService.updateAlphabetStatistics(statistics,getSharedPreferences(getString(R.string.statistics_file_key), Context.MODE_PRIVATE),arr);
 
-        if (game.hasWon()) StatisticsService.gameWon(getSharedPreferences(getString(R.string.statistics_file_key), Context.MODE_PRIVATE));
-        else StatisticsService.gameLost(getSharedPreferences(getString(R.string.statistics_file_key), Context.MODE_PRIVATE));
+        if (game.hasWon()) {
+            StatisticsService.gameWon(getSharedPreferences(getString(R.string.statistics_file_key), Context.MODE_PRIVATE),timer.getTimeInSeconds().intValue());
+        }
+        else{
+            StatisticsService.gameLost(getSharedPreferences(getString(R.string.statistics_file_key), Context.MODE_PRIVATE));
+        }
     }
 
-    private void removeFromView(ViewGroup viewGroup, Collection< ? extends View> views){
+    private void removeFromView(ViewGroup viewGroup, Collection<? extends View> views){
         for (View view : views) viewGroup.removeView(view);
     }
 
@@ -269,7 +262,6 @@ public class GameActivity extends AppCompatActivity {
     private void checkForOrientationChanges() {
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
             int size = ButtonCreator.getScreenWidth(getApplicationContext()) - imageView.getWidth();
-            //ButtonCreator.updateButtonWidth(size,letterLayout.getColumnCount(),letterButtons.values());
             ButtonCreator.updateButtonWidth(size,ButtonCreator.BUTTON_GRID_SIZE,letterButtons.values());
         }else{
             ButtonCreator.updateButtonWidth(ButtonCreator.getScreenWidth(getApplicationContext()),ButtonCreator.BUTTON_GRID_SIZE,letterButtons.values());
@@ -285,10 +277,12 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        timer.pause();
     }
 
     @Override
     protected void onResume() {
+        if (timer.hasStarted()) timer.start();
         super.onResume();
         checkForOrientationChanges();
         removeFromView(letterLayout,letterButtons.values());

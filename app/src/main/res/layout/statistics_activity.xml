@@ -14,7 +14,9 @@
         android:background="?attr/colorPrimary"
         android:elevation="10dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:textAlignment="center"
+        />
 
 
     <com.beardedhen.androidbootstrap.AwesomeTextView
@@ -22,50 +24,79 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/number_won"
-        android:textSize="15pt"/>
+        android:textSize="15pt"
+        android:background="@color/bootstrap_brand_success"
+        />
 
     <com.beardedhen.androidbootstrap.AwesomeTextView
         android:id="@+id/numberWon_val"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="15pt"/>
+        android:textSize="12pt"
+        />
 
     <com.beardedhen.androidbootstrap.AwesomeTextView
         android:id="@+id/numberLost"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/number_lost"
-        android:textSize="15pt"/>
+        android:textSize="15pt"
+        android:background="@color/bootstrap_brand_success"
+        />
 
     <com.beardedhen.androidbootstrap.AwesomeTextView
         android:id="@+id/numberLost_val"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="15pt"/>
+        android:textSize="12pt"
+        />
 
     <com.beardedhen.androidbootstrap.AwesomeTextView
         android:id="@+id/mostLetter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/m_popular_letter"
-        android:textSize="15pt"/>
+        android:textSize="15pt"
+        android:background="@color/bootstrap_brand_success"
+        />
 
     <com.beardedhen.androidbootstrap.AwesomeTextView
         android:id="@+id/mostLetter_val"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="15pt"/>
+        android:textSize="12pt"
+        />
 
     <com.beardedhen.androidbootstrap.AwesomeTextView
         android:id="@+id/leastLetter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/l_popular_letter"
-        android:textSize="15pt"/>
+        android:textSize="15pt"
+        android:background="@color/bootstrap_brand_success"
+        android:textColor="#FFFFFF"
+        />
 
     <com.beardedhen.androidbootstrap.AwesomeTextView
         android:id="@+id/leastLetter_val"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="15pt"/>
+        android:textSize="12pt"
+        />
+
+    <com.beardedhen.androidbootstrap.AwesomeTextView
+        android:id="@+id/bestTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/bestTime"
+        android:textSize="15pt"
+        android:background="@color/bootstrap_brand_success"
+        />
+
+    <com.beardedhen.androidbootstrap.AwesomeTextView
+        android:id="@+id/bestTime_val"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="12pt"
+        />
 </LinearLayout>

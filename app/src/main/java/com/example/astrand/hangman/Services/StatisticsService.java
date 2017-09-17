@@ -6,9 +6,6 @@ import com.example.astrand.hangman.DTO_Objects.StatisticsTransfer;
 
 import java.util.HashMap;
 
-/**
- * Created by strand117 on 31.08.2017.
- */
 
 public class StatisticsService {
 
@@ -17,8 +14,9 @@ public class StatisticsService {
     public static final String LEAST_USED = "least_used";
     public static final String NUMBER_LOST = "numbers_lost";
     public static final String NUMBER_WON = "number_won";
+    public static final String TIME_WON = "time_won";
 
-    public static HashMap<String,Integer> getAlphabetStatistics(SharedPreferences smap, String[] alphabet){
+    private static HashMap<String,Integer> getAlphabetStatistics(SharedPreferences smap, String[] alphabet){
 
         HashMap<String, Integer> map = new HashMap<>();
 
@@ -26,9 +24,7 @@ public class StatisticsService {
             if (smap.contains(s)) {
                 map.put(s,smap.getInt(s,0));
             }
-
         }
-
         return map;
 
     }
@@ -42,7 +38,14 @@ public class StatisticsService {
             editor.putInt(s,sharedPreferences.getInt(s,0) + addedValue);
             editor.apply();
         }
+    }
 
+    private static void updateTimeStatistics(Integer timeInSeconds,SharedPreferences sharedPreferences){
+        if (sharedPreferences.getInt(TIME_WON,Integer.MAX_VALUE) > timeInSeconds){
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt(TIME_WON,timeInSeconds);
+            editor.apply();
+        }
     }
 
     public static void gameLost(SharedPreferences sharedPreferences){
@@ -51,7 +54,8 @@ public class StatisticsService {
         editor.apply();
     }
 
-    public static void gameWon(SharedPreferences sharedPreferences){
+    public static void gameWon(SharedPreferences sharedPreferences,Integer timeInSeconds){
+        updateTimeStatistics(timeInSeconds,sharedPreferences);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt(NUMBER_WON,sharedPreferences.getInt(NUMBER_WON,0) + 1);
         editor.apply();
@@ -78,8 +82,11 @@ public class StatisticsService {
         tempDTO = getNumberOfLosses(sharedPreferences);
         result.put(NUMBER_LOST,nullTextOrStringValue(tempDTO));
 
-        tempDTO = getnNumberOfWins(sharedPreferences);
+        tempDTO = getNumberOfWins(sharedPreferences);
         result.put(NUMBER_WON,nullTextOrStringValue(tempDTO));
+
+        tempDTO = getBestTime(sharedPreferences);
+        result.put(TIME_WON,nullTextOrStringValue(tempDTO));
 
         return result;
     }
@@ -140,7 +147,7 @@ public class StatisticsService {
         return dto;
     }
 
-    private static StatisticsTransfer getnNumberOfWins(SharedPreferences sharedPreferences){
+    private static StatisticsTransfer getNumberOfWins(SharedPreferences sharedPreferences){
         StatisticsTransfer dto = new StatisticsTransfer();
         dto.key = NUMBER_WON;
         dto.value = sharedPreferences.getInt(NUMBER_WON,0);
@@ -148,7 +155,11 @@ public class StatisticsService {
         return dto;
     }
 
+    private static StatisticsTransfer getBestTime(SharedPreferences sharedPreferences){
+        StatisticsTransfer dto = new StatisticsTransfer();
+        dto.key = TIME_WON;
+        dto.value = sharedPreferences.getInt(TIME_WON,0);
 
-
-
+        return dto;
+    }
 }

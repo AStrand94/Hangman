@@ -2,12 +2,12 @@ package com.example.astrand.hangman.Activities;
 
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
+import android.widget.ImageView;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.example.astrand.hangman.ModelSettings.Language;
@@ -18,37 +18,53 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
 
     /*
-    TODO: Time taking for each game - statistics
+        TODO: Fargevalg, er grønt på knappene OK..?
+        TODO: Bedre bruk av plass i GameActivity
+        TODO: Erstatt "sett språk" med flagg av tilgjenglige språk
+        TODO: RulesActivity er stygg som f
+        TODO: Bakgrunn i MainActivity? I det minste annen bakgrunnsfarge.
      */
 
-    Spinner languageSelector;
-    BootstrapButton startButton, statisticsButton, rulesButton,setLanguageButton;
+
+    //Spinner languageSelector;
+    BootstrapButton startButton, statisticsButton, rulesButton;// setLanguageButton;
+    ImageView enFlag, noFlag;
+    private static final Locale NO_LOCALE = new Locale("nb");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        startButton = (BootstrapButton)findViewById(R.id.startButton);
-        statisticsButton = (BootstrapButton)findViewById(R.id.statisticsButton);
-        rulesButton = (BootstrapButton)findViewById(R.id.rulesButton);
-        setLanguageButton = (BootstrapButton)findViewById(R.id.languageButton);
-        languageSelector =  (Spinner)findViewById(R.id.select_language_spinner);
+        startButton = (BootstrapButton) findViewById(R.id.startButton);
+        statisticsButton = (BootstrapButton) findViewById(R.id.statisticsButton);
+        rulesButton = (BootstrapButton) findViewById(R.id.rulesButton);
+        enFlag = (ImageView) findViewById(R.id.flag1);
+        noFlag = (ImageView) findViewById(R.id.flag2);
 
         instantiateButtonListeners();
-        setSpinnerValues();
+        setStartLanguage();
 
-        Log.d("LANGUAGE",getResources().getConfiguration().locale.toString());
+        Log.d("LANGUAGE", getResources().getConfiguration().locale.toString());
+    }
+
+    private void setStartLanguage(){
+        if (getResources().getConfiguration().locale.getLanguage().equals("nb")) {
+            setNoLanguageFlagActive();
+        }else{
+            setEnLanguageFlagActive();
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        setSpinnerValues();
     }
 
-    private void instantiateButtonListeners(){
-        startButton.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+
+    private void instantiateButtonListeners() {
+        startButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 goToGame();
             }
         });
@@ -64,27 +80,45 @@ public class MainActivity extends AppCompatActivity {
                 launchRulesActivity();
             }
         });
-
-        setLanguageButton.setOnClickListener(new View.OnClickListener() {
+        enFlag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Language lan = (Language)languageSelector.getSelectedItem();
-                if (!lan.getLocale().getLanguage().equals(getResources().getConfiguration().locale.getLanguage()))
-                    setLocale(lan.getLocale());
+                setEnLanguage();
+            }
+        });
+        noFlag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setNoLanguage();
             }
         });
     }
 
-    private void setSpinnerValues(){
-        final Language[] languages = Language.getDefaultLanguages(getResources());
-        languageSelector.setAdapter(new ArrayAdapter<Language>(this,R.layout.support_simple_spinner_dropdown_item,languages));
+    private void setNoLanguage() {
+        setLocale(NO_LOCALE);
+        getResources().getConfiguration().setLocale(NO_LOCALE);
     }
 
-    private void goToGame(){
+    private void setEnLanguage() {
+        setLocale(Locale.ENGLISH);
+        getResources().getConfiguration().setLocale(Locale.ENGLISH);
+    }
+
+    private void setEnLanguageFlagActive() {
+        noFlag.setColorFilter(Color.argb(150,200,200,200));
+        enFlag.setColorFilter(null);
+    }
+
+    private void setNoLanguageFlagActive() {
+        enFlag.setColorFilter(Color.argb(150,200,200,200));
+        noFlag.setColorFilter(null);
+    }
+
+    private void goToGame() {
         launchGameActivity();
     }
 
-    private void setLocale(Locale locale){
+    private void setLocale(Locale locale) {
         Resources resources = getResources();
         resources.getConfiguration().setLocale(locale);
 
@@ -93,18 +127,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void launchGameActivity(){
-        Intent intent = new Intent(MainActivity.this,GameActivity.class);
+    private void launchGameActivity() {
+        Intent intent = new Intent(MainActivity.this, GameActivity.class);
         startActivity(intent);
     }
 
-    private void launchStatisticsActivity(){
-        Intent intent = new Intent(MainActivity.this,StatisticsActivity.class);
+    private void launchStatisticsActivity() {
+        Intent intent = new Intent(MainActivity.this, StatisticsActivity.class);
         startActivity(intent);
     }
 
-    private void launchRulesActivity(){
-        Intent intent = new Intent(MainActivity.this,RulesActivity.class);
+    private void launchRulesActivity() {
+        Intent intent = new Intent(MainActivity.this, RulesActivity.class);
         startActivity(intent);
     }
 
