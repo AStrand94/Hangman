@@ -20,8 +20,6 @@ public class MainActivity extends AppCompatActivity {
         TODO: Bakgrunn i MainActivity? I det minste annen bakgrunnsfarge.
      */
 
-
-    //Spinner languageSelector;
     BootstrapButton startButton, statisticsButton, rulesButton;// setLanguageButton;
     ImageView enFlag, noFlag;
     private static final Locale NO_LOCALE = new Locale("nb");

@@ -7,9 +7,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by strand117 on 23.08.2017.
- */
 
 @Deprecated
 public final class NoWords{
