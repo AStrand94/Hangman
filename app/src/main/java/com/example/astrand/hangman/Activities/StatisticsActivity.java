@@ -79,11 +79,11 @@ public class StatisticsActivity extends AppCompatActivity {
     }
 
     private void setColors(){
-        numberLost.setTextColor(Color.WHITE);
-        numberWon.setTextColor(Color.WHITE);
-        mostLetter.setTextColor(Color.WHITE);
-        leastLetter.setTextColor(Color.WHITE);
-        bestTime.setTextColor(Color.WHITE);
+        numberLost.setTextColor(Color.BLACK);
+        numberWon.setTextColor(Color.BLACK);
+        mostLetter.setTextColor(Color.BLACK);
+        leastLetter.setTextColor(Color.BLACK);
+        bestTime.setTextColor(Color.BLACK);
     }
 
     private void loadStatistics(){

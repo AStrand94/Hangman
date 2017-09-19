@@ -21,7 +21,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/number_won"
-        android:background="@color/bootstrap_brand_success"
         android:textSize="12pt"/>
 
     <com.beardedhen.androidbootstrap.AwesomeTextView
@@ -35,7 +34,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/number_lost"
-        android:background="@color/bootstrap_brand_success"
         android:textSize="12pt"/>
 
     <com.beardedhen.androidbootstrap.AwesomeTextView
@@ -49,7 +47,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/m_popular_letter"
-        android:background="@color/bootstrap_brand_success"
         android:textSize="12pt"/>
 
     <com.beardedhen.androidbootstrap.AwesomeTextView
@@ -63,7 +60,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/l_popular_letter"
-        android:background="@color/bootstrap_brand_success"
         android:textSize="12pt"/>
 
     <com.beardedhen.androidbootstrap.AwesomeTextView
@@ -77,7 +73,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/bestTime"
-        android:background="@color/bootstrap_brand_success"
         android:textSize="12pt"/>
 
     <com.beardedhen.androidbootstrap.AwesomeTextView

@@ -5,10 +5,6 @@ import com.example.astrand.hangman.BuildConfig;
 
 import java.io.Serializable;
 
-/**
- * Created by strand117 on 22.08.2017.
- */
-
 public class Hangman implements Serializable{
 
     private Word wordHelper;

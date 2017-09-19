@@ -4,9 +4,9 @@
     <string name="start_game">Start spill</string>
     <string name="alphabet">ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ</string>
     <string name="rules">Regler</string>
-    <string name="rules_text">Dette er en versjon av det klassiske spillet Hangman\n
+    <string name="rules_text">Dette er en versjon av det klassiske spillet Hangman\n\n
     Spilleren får et tilfeldig ord på språket som er valgt og velger ut bokstaver som den tror passer inn i ordet.
-    Spilleren har til sammen 7 forsøk på å gjette ordet.\n
+    Spilleren har til sammen 7 forsøk på å gjette ordet.\n\n
     Spilleren har også mulighet til å se statistikk over sine spill fra hovedmenyen.</string>
     <string name="statistics">Statistikk</string>
     <string name="new_game">Nytt spill</string>
@@ -16,16 +16,16 @@
     <string name="new_game_text_loss2">. Vil du starte et nytt spill?</string>
     <string name="yes">Ja</string>
     <string name="no">Nei</string>
-    <string name="m_popular_letter">Mest brukte bokstav:</string>
-    <string name="l_popular_letter">Minst brukte bokstav:</string>
-    <string name="number_won">Antall ganger vunnet:</string>
-    <string name="number_lost">Antall ganger tapt:</string>
+    <string name="m_popular_letter"><u>Mest brukte bokstav:</u></string>
+    <string name="l_popular_letter"><u>Minst brukte bokstav:</u></string>
+    <string name="number_won"><u>Antall ganger vunnet:</u></string>
+    <string name="number_lost"><u>Antall ganger tapt:</u></string>
     <string name="english">Engelsk</string>
     <string name="norwegian">Norsk</string>
     <string name="hangman_image_desc">Bilde av hangman-figuren</string>
     <string name="set_Language">Sett språk</string>
     <string name="no_statistics">Ingen statistikk. Spill mer!</string>
-    <string name="bestTime">Beste tid</string>
+    <string name="bestTime"><u>Beste tid</u></string>
     <string name="noTime">Ingen tid satt</string>
     <string name="seconds">sekunder</string>
 </resources>

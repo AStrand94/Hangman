@@ -18,10 +18,6 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
 
     /*
-        TODO: Fargevalg, er grønt på knappene OK..?
-        TODO: Bedre bruk av plass i GameActivity
-        TODO: Erstatt "sett språk" med flagg av tilgjenglige språk
-        TODO: RulesActivity er stygg som f
         TODO: Bakgrunn i MainActivity? I det minste annen bakgrunnsfarge.
      */
 
@@ -59,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        startButton.setTextColor(getColor(R.color.bootstrap_gray_dark));
+        statisticsButton.setTextColor(getColor(R.color.bootstrap_gray_dark));
+        rulesButton.setTextColor(getColor(R.color.bootstrap_gray_dark));
     }
 
 
@@ -146,6 +145,5 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        //Do something with 'Intent data' e.g. highscore.
     }
 }

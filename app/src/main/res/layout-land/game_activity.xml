@@ -22,10 +22,12 @@
         android:id="@+id/hangmanImage"
         android:layout_width="wrap_content"
         android:layout_height="300dp"
-        android:src="@drawable/hang01"
+        android:src="@drawable/h0"
         android:contentDescription="@string/hangman_image_desc"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:maxWidth="300dp"/>
 
     <TextView
         android:id="@+id/letterView"

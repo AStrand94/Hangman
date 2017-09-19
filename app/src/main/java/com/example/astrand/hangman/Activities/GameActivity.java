@@ -51,6 +51,7 @@ public class GameActivity extends AppCompatActivity {
         statistics = new HashMap<>();
         letterView.setText(formatGuessedString(game.getCurrentGuess()));
         setCharButtons();
+        imageView.setImageResource(getImageResource());
     }
 
     @Override
@@ -111,19 +112,19 @@ public class GameActivity extends AppCompatActivity {
 
         switch (falseTries){
             case 0:
-                return R.drawable.hang01;
+                return R.drawable.h0;
             case 1:
-                return R.drawable.hang03;
+                return R.drawable.h1;
             case 2:
-                return R.drawable.hang04;
+                return R.drawable.h2;
             case 3:
-                return R.drawable.hang05;
+                return R.drawable.h3;
             case 4:
-                return R.drawable.hang06;
+                return R.drawable.h4;
             case 5:
-                return R.drawable.hang07;
+                return R.drawable.h5;
             default:
-                return R.drawable.hang08;
+                return R.drawable.h6;
         }
     }
 
@@ -217,6 +218,7 @@ public class GameActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 switch (which){
                     case DialogInterface.BUTTON_NEGATIVE:
+                        GameActivity.this.finish();
                         break;
                     case DialogInterface.BUTTON_POSITIVE:
                         newGame();
@@ -248,7 +250,6 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void newGame(){
-        storeStatistics();
         String randomWord = RandomWordService.getRandomWord(getResources());
         game = new Hangman(randomWord,alphabet);
         statistics = new HashMap<>();

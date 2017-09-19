@@ -9,16 +9,6 @@
     android:visibility="visible"
     tools:context="com.example.astrand.hangman.Activities.MainActivity">
 
-
-
-    <!--<TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:layout_marginTop="40dp"
-        android:layout_gravity="center"
-         />-->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,14 +19,14 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/flag1"
-            android:src="@drawable/unitedkingdom"
+            android:id="@+id/flag2"
+            android:src="@drawable/norway"
             />
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/flag2"
-            android:src="@drawable/norway"
+            android:id="@+id/flag1"
+            android:src="@drawable/unitedkingdom"
             android:layout_marginLeft="15dp"
             />
     </LinearLayout>
@@ -52,7 +42,8 @@
         app:bootstrapSize="lg"
         app:buttonMode="regular"
         app:roundedCorners="true"
-        app:showOutline="false" />
+        app:showOutline="false"
+        android:textColor="#000000"/>
 
     <com.beardedhen.androidbootstrap.BootstrapButton
         android:id="@+id/statisticsButton"

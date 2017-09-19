@@ -7,10 +7,6 @@ import com.beardedhen.androidbootstrap.BootstrapButton;
 
 import java.io.Serializable;
 
-/**
- * Created by strand117 on 04.09.2017.
- */
-
 public class MyBootstrapButton extends BootstrapButton implements Serializable {
     public MyBootstrapButton(Context context) {
         super(context);

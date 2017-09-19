@@ -21,8 +21,8 @@
     <ImageView
         android:id="@+id/hangmanImage"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/hang01"
+        android:layout_height="280dp"
+
         android:contentDescription="@string/hangman_image_desc"
         />
 
@@ -39,7 +39,7 @@
         android:id="@+id/letterLayout"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         />

@@ -4,9 +4,9 @@
     <string name="start_game">Start game</string>
     <string name="alphabet">ABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
     <string name="rules">Rules</string>
-    <string name="rules_text">This is a version of the classic game Hangman\n
+    <string name="rules_text">This is a version of the classic game Hangman\n\n
     The players gets a word in language selected, and chooses letters whom might fit in the word or not.
-    The player has 7 tries to guess the correct word.\n
+    The player has 7 tries to guess the correct word.\n\n
     The player has also the ability to see statistics for all of the games played from the main menu.</string>
     <string name="statistics">Statistics</string>
     <string name="new_game">New game</string>
@@ -16,16 +16,16 @@
     <string name="new_game_text_win2">\'. Do you want to start a new game?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
-    <string name="m_popular_letter">Most used letter:</string>
-    <string name="l_popular_letter">Least used letter:</string>
-    <string name="number_won">Number of times won:</string>
-    <string name="number_lost">Number of times lost:</string>
+    <string name="m_popular_letter"><u>Most used letter:</u></string>
+    <string name="l_popular_letter"><u>Least used letter:</u></string>
+    <string name="number_won"><u>Number of times won:</u></string>
+    <string name="number_lost"><u>Number of times lost:</u></string>
     <string name="english">English</string>
     <string name="norwegian">Norwegian</string>
     <string name="hangman_image_desc">Image of the hangman-figure</string>
     <string name="set_Language">Set language</string>
     <string name="no_statistics">No statistics. Play more!</string>
-    <string name="bestTime">Best time</string>
+    <string name="bestTime"><u>Best time</u></string>
     <string name="noTime">No time set</string>
     <string name="seconds">seconds</string>
 </resources>

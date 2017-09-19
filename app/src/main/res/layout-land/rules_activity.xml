@@ -18,5 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="@string/rules_text"
-        android:textSize="9pt"/>
+        android:textSize="9pt"
+        android:id="@+id/rulesText"
+        />
 </LinearLayout>

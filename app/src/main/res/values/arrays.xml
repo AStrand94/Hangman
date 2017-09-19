@@ -1,25 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="word">
-        <item>ord</item>
-        <item>abdisere</item>
-        <item>aerodynamisk</item>
-        <item>aksjekursene</item>
-        <item>approksimasjon</item>
-        <item>begravelsesbyråenes</item>
-        <item>musikkinstrumenter</item>
+        <item>aksjekurs</item>
+        <item>begravelsesbyrå</item>
+        <item>musikkinstrument</item>
         <item>pliktoppfyllende</item>
-        <item>potensialteorien</item>
         <item>pågangsmot</item>
         <item>regnskapsavdeling</item>
-        <item>rettsforhandlinger</item>
-        <item>rettsvitenskapen</item>
-        <item>sanitetsforening</item>
-        <item>tidsfunksjonen</item>
-        <item>tidsskrifter</item>
+        <item>tidsfunksjon</item>
         <item>ulemper</item>
-        <item>universitetsbiblioteket</item>
-        <item>vaskemaskiner</item>
-        <item>vinkelhastighet</item>
+        <item>universitetsbibliotek</item>
+        <item>vaskemaskin</item>
     </string-array>
 </resources>

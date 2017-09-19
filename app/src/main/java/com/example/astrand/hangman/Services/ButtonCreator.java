@@ -1,6 +1,7 @@
 package com.example.astrand.hangman.Services;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,7 @@ import java.util.HashMap;
 
 public final class ButtonCreator {
 
-    public static int BUTTON_GRID_SIZE = 6;
+    public static int BUTTON_GRID_SIZE = 5;
 
     public static HashMap<String,MyBootstrapButton> createListFromChars(Context contexts, char[] chars){
         HashMap<String,MyBootstrapButton> bootstrapButtonList = new HashMap<>();
@@ -45,7 +46,7 @@ public final class ButtonCreator {
         Point point = new Point();
         windowManager.getDefaultDisplay().getSize(point);
 
-        row = BUTTON_GRID_SIZE;
+        row = 8;
         col = BUTTON_GRID_SIZE;
 
         int screenWidth = getScreenWidth(context) / row;
@@ -53,8 +54,8 @@ public final class ButtonCreator {
         gridLayout.setColumnCount(col);
         gridLayout.setRowCount(row);
 
-        for (int i = 0; i < col; i++){
-            for (int j = 0; j < row; j++){
+        for (int j = 0; j < row; j++){
+            for (int i = 0; i < col; i++){
                 if (index >= bootstrapButtons.size()) break;
 
                 BootstrapButton button = bootstrapButtons.get(Character.toString(chars[index++]));
@@ -69,9 +70,14 @@ public final class ButtonCreator {
                 //param.leftMargin = 10;
                 //param.topMargin = 5;
                 //param.setGravity(Gravity.CENTER);not needed?
-                param.columnSpec = GridLayout.spec(j);
-                param.rowSpec = GridLayout.spec(i);
+                param.columnSpec = GridLayout.spec(i);
+                param.rowSpec = GridLayout.spec(j);
+                param.rightMargin = 2;
+                param.bottomMargin = 2;
                 button.setLayoutParams(param);
+                //button.setHighlightColor(Color.BLACK);
+                button.setTextColor(Color.BLACK);
+                //button.setBackgroundColor(Color.BLACK);
                 //gridLayout.addView(button);
             }
         }

@@ -12,12 +12,15 @@
         android:background="?attr/colorPrimary"
         android:elevation="10dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        />
 
     <com.beardedhen.androidbootstrap.AwesomeTextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="@string/rules_text"
-        android:textSize="8pt"/>
+        android:textSize="8pt"
+        android:id="@+id/rulesText"
+        />
 
 </LinearLayout>
