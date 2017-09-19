@@ -9,9 +9,6 @@ import android.support.v7.widget.Toolbar;
 import com.beardedhen.androidbootstrap.AwesomeTextView;
 import com.example.astrand.hangman.R;
 
-/**
- * Created by strand117 on 31.08.2017.
- */
 
 public class RulesActivity extends AppCompatActivity{
 

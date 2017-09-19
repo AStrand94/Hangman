@@ -155,7 +155,10 @@ public class GameActivity extends AppCompatActivity {
                 .setPositiveButton(positiveText,onClickListener)
                 .setNegativeButton(negativeText,onClickListener)
                 .create()
-                .show();
+                .setCanceledOnTouchOutside(false);
+
+        builder.setCancelable(false);
+        builder.show();
     }
 
     private void disableButtons() {

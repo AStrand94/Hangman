@@ -7,7 +7,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:visibility="visible"
-    tools:context="com.example.astrand.hangman.Activities.MainActivity">
+    tools:context="com.example.astrand.hangman.Activities.MainActivity"
+    android:background="@drawable/hfrontland">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -69,4 +70,17 @@
         app:buttonMode="regular"
         app:roundedCorners="true"
         app:showOutline="false" />
+
+    <com.beardedhen.androidbootstrap.AwesomeTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="17pt"
+        android:text="@string/app_name"
+        android:layout_marginTop="40dp"
+        android:fontFamily="casual"/>
+    <com.beardedhen.androidbootstrap.AwesomeTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/madeBy"
+        android:fontFamily="casual"/>
 </LinearLayout>

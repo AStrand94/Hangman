@@ -30,4 +30,5 @@
     <string name="seconds">sekunder</string>
     <string name="allWordsTitle">No more words</string>
     <string name="allWordsContent">You have played with all words available. Are you sure you want to continue?</string>
+    <string name="madeBy">Laget av: <u>Andreas Strand</u></string>
 </resources>

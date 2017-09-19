@@ -30,4 +30,5 @@
     <string name="seconds">seconds</string>
     <string name="allWordsTitle">Ingen flere ord</string>
     <string name="allWordsContent">Du har brukt alle ordene tilgjenglig i spillet. Er du sikker på at du vil fortsette?</string>
+    <string name="madeBy">Made by: <u>Andreas Strand</u></string>
 </resources>
