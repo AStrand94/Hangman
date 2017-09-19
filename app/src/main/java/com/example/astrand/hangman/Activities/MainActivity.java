@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
-import com.example.astrand.hangman.ModelSettings.Language;
 import com.example.astrand.hangman.R;
 
 import java.util.Locale;
