@@ -10,10 +10,10 @@
     Spilleren har også mulighet til å se statistikk over sine spill fra hovedmenyen.</string>
     <string name="statistics">Statistikk</string>
     <string name="new_game">Nytt spill</string>
-    <string name="new_game_text_win1">Gratulerer, du vant og gjetter ordet \'</string>
-    <string name="new_game_text_win2">\'. Vil du starte et nytt spill?</string>
-    <string name="new_game_text_loss1">Dessverre klarte du det ikke, ordet var: </string>
-    <string name="new_game_text_loss2">. Vil du starte et nytt spill?</string>
+    <string name="new_game_text_win1">Gratulerer, du vant og gjetter ordet \n</string>
+    <string name="new_game_text_win2">\n. Vil du starte et nytt spill?</string>
+    <string name="new_game_text_loss1">Dessverre klarte du det ikke, ordet var:\n</string>
+    <string name="new_game_text_loss2">\nVil du starte et nytt spill?</string>
     <string name="yes">Ja</string>
     <string name="no">Nei</string>
     <string name="m_popular_letter"><u>Mest brukte bokstav:</u></string>
@@ -29,6 +29,8 @@
     <string name="noTime">Ingen tid satt</string>
     <string name="seconds">sekunder</string>
     <string name="allWordsTitle">No more words</string>
-    <string name="allWordsContent">You have played with all words available. Are you sure you want to continue?</string>
+    <string name="allWordsContent">Du har brukt alle ordene tilgjenglig i spillet. Er du sikker på at du vil fortsette?</string>
     <string name="madeBy">Laget av: <u>Andreas Strand</u></string>
+    <string name="noflag">Bilde av det norske flagg. Klikk for å endre språk til norsk.</string>
+    <string name="enflag">Bilde av det engelske flagg. Klikk for å endre språk til engelsk.</string>
 </resources>

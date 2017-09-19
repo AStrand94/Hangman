@@ -23,13 +23,15 @@
             android:layout_height="match_parent"
             android:id="@+id/flag2"
             android:src="@drawable/norway"
+            android:contentDescription="@string/noflag"
             />
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/flag1"
             android:src="@drawable/unitedkingdom"
-            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
+            android:contentDescription="@string/enflag"
             />
     </LinearLayout>
 

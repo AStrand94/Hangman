@@ -29,4 +29,8 @@ public final class RandomWordService {
         String randomWords[] = resources.getStringArray(R.array.word);
         return randomWords.length == usedWords.size();
     }
+
+    public static void clearList(){
+        usedWords.clear();
+    }
 }

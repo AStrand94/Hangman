@@ -284,9 +284,9 @@ public class GameActivity extends AppCompatActivity {
     private void checkForOrientationChanges() {
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
             int size = ButtonCreator.getScreenWidth(getApplicationContext()) - imageView.getWidth();
-            ButtonCreator.updateButtonWidth(size,ButtonCreator.BUTTON_GRID_SIZE,letterButtons.values());
+            ButtonCreator.updateButtonWidth(size,ButtonCreator.BUTTON_GRID_COL,letterButtons.values());
         }else{
-            ButtonCreator.updateButtonWidth(ButtonCreator.getScreenWidth(getApplicationContext()),ButtonCreator.BUTTON_GRID_SIZE,letterButtons.values());
+            ButtonCreator.updateButtonWidth(ButtonCreator.getScreenWidth(getApplicationContext()),ButtonCreator.BUTTON_GRID_COL,letterButtons.values());
         }
     }
 

@@ -11,8 +11,11 @@ import android.widget.ImageView;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.example.astrand.hangman.R;
+import com.example.astrand.hangman.Services.RandomWordService;
+import com.example.astrand.hangman.Services.StatisticsService;
 
 import java.util.Locale;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -93,11 +96,13 @@ public class MainActivity extends AppCompatActivity {
     private void setNoLanguage() {
         setLocale(NO_LOCALE);
         getResources().getConfiguration().setLocale(NO_LOCALE);
+        RandomWordService.clearList();
     }
 
     private void setEnLanguage() {
         setLocale(Locale.ENGLISH);
         getResources().getConfiguration().setLocale(Locale.ENGLISH);
+        RandomWordService.clearList();
     }
 
     private void setEnLanguageFlagActive() {

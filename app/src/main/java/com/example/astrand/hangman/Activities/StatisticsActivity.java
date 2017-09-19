@@ -62,7 +62,7 @@ public class StatisticsActivity extends AppCompatActivity {
         mostLetterVal.setText(statistics.get(StatisticsService.MOST_USED));
         leastLetterVal.setText(statistics.get(StatisticsService.LEAST_USED));
         String val = statistics.get(StatisticsService.TIME_WON);
-        bestTimeVal.setText((val == null || val.isEmpty()) ? getString(R.string.no_statistics) : val + getString(R.string.seconds));
+        bestTimeVal.setText((val == null || val.isEmpty() || val.equals("0")) ? getString(R.string.no_statistics) : val + getString(R.string.seconds));
     }
 
     private void setNoStatistics() {

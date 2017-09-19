@@ -18,9 +18,10 @@ import java.util.HashMap;
 
 public final class ButtonCreator {
 
-    public static int BUTTON_GRID_SIZE = 5;
+    public static final int BUTTON_GRID_COL = 5;
+    private static final int BUTTON_GRID_ROW = 8;
 
-    public static HashMap<String,MyBootstrapButton> createListFromChars(Context contexts, char[] chars){
+    private static HashMap<String,MyBootstrapButton> createListFromChars(Context contexts, char[] chars){
         HashMap<String,MyBootstrapButton> bootstrapButtonList = new HashMap<>();
 
         for (int i = 0; i < chars.length; i++){
@@ -39,23 +40,20 @@ public final class ButtonCreator {
         return createButtonGrid(createListFromChars(context,chars), gridLayout,chars,context);
     }
 
-    public static HashMap<String,MyBootstrapButton> createButtonGrid(HashMap<String,MyBootstrapButton> bootstrapButtons, GridLayout gridLayout, char[] chars,Context context){
+    private static HashMap<String,MyBootstrapButton> createButtonGrid(HashMap<String,MyBootstrapButton> bootstrapButtons, GridLayout gridLayout, char[] chars,Context context){
 
-        int row, col, index = 0;
+        int index = 0;
         WindowManager windowManager = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
         Point point = new Point();
         windowManager.getDefaultDisplay().getSize(point);
 
-        row = 8;
-        col = BUTTON_GRID_SIZE;
+        int screenWidth = getScreenWidth(context) / BUTTON_GRID_ROW;
 
-        int screenWidth = getScreenWidth(context) / row;
+        gridLayout.setColumnCount(BUTTON_GRID_COL);
+        gridLayout.setRowCount(BUTTON_GRID_ROW);
 
-        gridLayout.setColumnCount(col);
-        gridLayout.setRowCount(row);
-
-        for (int j = 0; j < row; j++){
-            for (int i = 0; i < col; i++){
+        for (int j = 0; j < BUTTON_GRID_ROW; j++){
+            for (int i = 0; i < BUTTON_GRID_COL; i++){
                 if (index >= bootstrapButtons.size()) break;
 
                 BootstrapButton button = bootstrapButtons.get(Character.toString(chars[index++]));
@@ -67,18 +65,13 @@ public final class ButtonCreator {
                 GridLayout.LayoutParams param = new GridLayout.LayoutParams();
                 param.height = GridLayout.LayoutParams.WRAP_CONTENT;
                 param.width = GridLayout.LayoutParams.WRAP_CONTENT;
-                //param.leftMargin = 10;
-                //param.topMargin = 5;
-                //param.setGravity(Gravity.CENTER);not needed?
                 param.columnSpec = GridLayout.spec(i);
                 param.rowSpec = GridLayout.spec(j);
                 param.rightMargin = 2;
                 param.bottomMargin = 2;
+
                 button.setLayoutParams(param);
-                //button.setHighlightColor(Color.BLACK);
                 button.setTextColor(Color.BLACK);
-                //button.setBackgroundColor(Color.BLACK);
-                //gridLayout.addView(button);
             }
         }
         return bootstrapButtons;

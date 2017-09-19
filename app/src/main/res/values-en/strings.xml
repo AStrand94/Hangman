@@ -10,10 +10,10 @@
     The player has also the ability to see statistics for all of the games played from the main menu.</string>
     <string name="statistics">Statistics</string>
     <string name="new_game">New game</string>
-    <string name="new_game_text_loss1">You did not make it, the word was: </string>
-    <string name="new_game_text_loss2">. Do you want to start a new game?</string>
-    <string name="new_game_text_win1">Congratulations, you guessed the word \'</string>
-    <string name="new_game_text_win2">\'. Do you want to start a new game?</string>
+    <string name="new_game_text_loss1">You did not make it, the word was\n</string>
+    <string name="new_game_text_loss2">\nDo you want to start a new game?</string>
+    <string name="new_game_text_win1">Congratulations, you guessed the word\n</string>
+    <string name="new_game_text_win2">\nDo you want to start a new game?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="m_popular_letter"><u>Most used letter:</u></string>
@@ -29,6 +29,8 @@
     <string name="noTime">No time set</string>
     <string name="seconds">seconds</string>
     <string name="allWordsTitle">Ingen flere ord</string>
-    <string name="allWordsContent">Du har brukt alle ordene tilgjenglig i spillet. Er du sikker på at du vil fortsette?</string>
+    <string name="allWordsContent">You have played with all words available. Are you sure you want to continue?</string>
     <string name="madeBy">Made by: <u>Andreas Strand</u></string>
+    <string name="noflag">Image of the Norwegian flag. Click to change language to Norwegian.</string>
+    <string name="enflag">Image of the English flag. Click to change language to English.</string>
 </resources>

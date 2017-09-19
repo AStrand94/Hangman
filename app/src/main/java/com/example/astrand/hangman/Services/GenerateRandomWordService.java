@@ -1,10 +1,6 @@
 package com.example.astrand.hangman.Services;
 import com.loopj.android.http.*;
 
-/**
- * Created by strand117 on 21.08.2017.
- */
-
 @Deprecated
 public class GenerateRandomWordService {
 
