@@ -7,10 +7,6 @@ import com.example.astrand.hangman.R;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by strand117 on 30.08.2017.
- */
-
 public final class RandomWordService {
 
     private static List<String> usedWords = new ArrayList<>();
@@ -27,5 +23,10 @@ public final class RandomWordService {
         else return getRandomWord(resources);
 
         return word;
+    }
+
+    public static boolean usedAllWords(Resources resources){
+        String randomWords[] = resources.getStringArray(R.array.word);
+        return randomWords.length == usedWords.size();
     }
 }

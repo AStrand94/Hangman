@@ -250,6 +250,24 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void newGame(){
+
+        boolean allWordsAreTested = RandomWordService.usedAllWords(getResources());
+
+        if (allWordsAreTested){
+            showYesNoDialog(getString(R.string.allWordsTitle), getString(R.string.allWordsContent), getString(R.string.yes), getString(R.string.no),
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            switch (which){
+                                case DialogInterface.BUTTON_NEGATIVE:
+                                    GameActivity.this.finish();
+                                    break;
+                                case DialogInterface.BUTTON_POSITIVE:
+                            }
+                        }
+                    });
+        }
+
         String randomWord = RandomWordService.getRandomWord(getResources());
         game = new Hangman(randomWord,alphabet);
         statistics = new HashMap<>();

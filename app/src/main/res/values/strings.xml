@@ -28,4 +28,6 @@
     <string name="bestTime"><u>Beste tid</u></string>
     <string name="noTime">Ingen tid satt</string>
     <string name="seconds">sekunder</string>
+    <string name="allWordsTitle">No more words</string>
+    <string name="allWordsContent">You have played with all words available. Are you sure you want to continue?</string>
 </resources>
