@@ -1,6 +1,8 @@
 package com.example.astrand.hangman.Activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -39,15 +41,36 @@ public class MainActivity extends AppCompatActivity {
         noFlag = (ImageView) findViewById(R.id.flag2);
 
         instantiateButtonListeners();
-        setStartLanguage();
+
+        if(!hasSetStartLocale()) setStartLanguage();
+        else setStartFlag();
 
         Log.d("LANGUAGE", getResources().getConfiguration().locale.toString());
     }
 
-    private void setStartLanguage(){
+    private void setStartFlag() {
         if (getResources().getConfiguration().locale.getLanguage().equals("nb")) {
             setNoLanguageFlagActive();
+        } else {
+            setEnLanguageFlagActive();
+        }
+    }
+
+    private void setStartLanguage(){
+        String lastLocale = getLastLocale();
+        if (lastLocale.equals("")) {
+            if (getResources().getConfiguration().locale.getLanguage().equals("nb")) {
+                setNoLanguageFlagActive();
+                setLastLocale("nb");
+            } else {
+                setEnLanguageFlagActive();
+                setLastLocale("en");
+            }
+        }else if (lastLocale.equals("nb")){
+            setNoLanguage();
+            setNoLanguageFlagActive();
         }else{
+            setEnLanguage();
             setEnLanguageFlagActive();
         }
     }
@@ -83,26 +106,30 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 setEnLanguage();
+                setLastLocale("en");
             }
         });
         noFlag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setNoLanguage();
+                setLastLocale("nb");
             }
         });
     }
 
     private void setNoLanguage() {
-        setLocale(NO_LOCALE);
         getResources().getConfiguration().setLocale(NO_LOCALE);
         RandomWordService.clearList();
+        setLastLocale("nb");
+        setLocale(NO_LOCALE);
     }
 
     private void setEnLanguage() {
-        setLocale(Locale.ENGLISH);
         getResources().getConfiguration().setLocale(Locale.ENGLISH);
         RandomWordService.clearList();
+        setLastLocale("en");
+        setLocale(Locale.ENGLISH);
     }
 
     private void setEnLanguageFlagActive() {
@@ -147,5 +174,29 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private String getLastLocale(){
+        return getSharedPreferences(getString(R.string.statistics_file_key), Context.MODE_PRIVATE)
+                .getString("locale","");
+    }
+
+    private void setLastLocale(String code){
+        getSharedPreferences(getString(R.string.statistics_file_key), Context.MODE_PRIVATE)
+                .edit()
+                .putString("locale",code)
+                .apply();
+    }
+
+    private boolean hasSetStartLocale() {
+        SharedPreferences s = getSharedPreferences(getString(R.string.statistics_file_key), Context.MODE_PRIVATE);
+
+        if (s.getBoolean("localeIsSet",true)){
+            s.edit().putBoolean("localeIsSet",false).apply();
+            return true;
+        }else{
+            s.edit().putBoolean("localeIsSet",true).apply();
+            return false;
+        }
     }
 }
